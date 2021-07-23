@@ -22,6 +22,7 @@
 		B6B2F0CE26AAE3A400DDF1E9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B2F0CD26AAE3A400DDF1E9 /* UserCell.swift */; };
 		B6B2F0D126AAE40100DDF1E9 /* UITableViewCell+XIB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B2F0D026AAE40100DDF1E9 /* UITableViewCell+XIB.swift */; };
 		B6B2F0D326AAE6A900DDF1E9 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B2F0D226AAE6A900DDF1E9 /* Name.swift */; };
+		B6B2F0D526AAEEFF00DDF1E9 /* DOB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B2F0D426AAEEFF00DDF1E9 /* DOB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		B6B2F0CD26AAE3A400DDF1E9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		B6B2F0D026AAE40100DDF1E9 /* UITableViewCell+XIB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+XIB.swift"; sourceTree = "<group>"; };
 		B6B2F0D226AAE6A900DDF1E9 /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
+		B6B2F0D426AAEEFF00DDF1E9 /* DOB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				B6B2F0C226AAE06800DDF1E9 /* User.swift */,
 				B6B2F0C426AAE0B700DDF1E9 /* Picture.swift */,
 				B6B2F0D226AAE6A900DDF1E9 /* Name.swift */,
+				B6B2F0D426AAEEFF00DDF1E9 /* DOB.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				B6B2F0C526AAE0B700DDF1E9 /* Picture.swift in Sources */,
 				B6B2F0AB26AADDED00DDF1E9 /* SceneDelegate.swift in Sources */,
 				B6B2F0BE26AADFC300DDF1E9 /* CustomAPI.swift in Sources */,
+				B6B2F0D526AAEEFF00DDF1E9 /* DOB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

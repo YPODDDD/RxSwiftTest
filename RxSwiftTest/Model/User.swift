@@ -7,7 +7,7 @@
 
 public struct User: Codable {
     var name: Name
-//    var age: Int
+    var dob: DOB
     var picture: Picture
     var email: String
 }

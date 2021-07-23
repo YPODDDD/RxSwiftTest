@@ -60,13 +60,14 @@ extension UserListView: UIScrollViewDelegate {
                     cell.picture.sd_imageIndicator = SDWebImageActivityIndicator.gray
                     cell.picture.sd_setImage(with: URL(string: element.picture.thumbnail))
                     cell.name.text = element.name.first + " " + element.name.last
+                    cell.age.text = "อายุ: \(element.dob.age)"
                     cell.email.text = element.email
             }
             .disposed(by: disposeBag)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 80
     }
     
 }

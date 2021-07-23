@@ -7,13 +7,18 @@
 
 import UIKit
 import SDWebImage
+import RxSwift
+import RxRelay
+import RxCocoa
 
 class UserListView: UIViewController {
     
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var userListTableView: UITableView!
     
-    var user_list = [User]()
+    var disposeBag = DisposeBag()
+    
+    var user_list = BehaviorRelay<[User]>(value: [])
     
     override func viewDidLoad() {
         setTextField()
@@ -31,7 +36,7 @@ extension UserListView: UITextFieldDelegate {
         if let input = textField.text {
             CustomAPI.shared.getUser(input: input) { result in
                 guard let result = result else { return }
-                self.user_list = result
+                self.user_list.accept(result)
                 self.userListTableView.reloadData()
             }
         }
@@ -40,32 +45,28 @@ extension UserListView: UITextFieldDelegate {
     }
 }
 
-extension UserListView: UITableViewDelegate, UITableViewDataSource {
+extension UserListView: UIScrollViewDelegate {
     
     func setTableView() {
-        userListTableView.delegate = self
-        userListTableView.dataSource = self
+        
+        userListTableView.rx.setDelegate(self).disposed(by: disposeBag)
         
         UserCell.register(for: userListTableView)
+        
+        user_list.asObservable()
+                .bind(to: userListTableView.rx
+                        .items(cellIdentifier: UserCell.identifierName, cellType: UserCell.self))
+                { index, element, cell in
+                    cell.picture.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                    cell.picture.sd_setImage(with: URL(string: element.picture.thumbnail))
+                    cell.name.text = element.name.first + " " + element.name.last
+                    cell.email.text = element.email
+            }
+            .disposed(by: disposeBag)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user_list.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifierName, for: indexPath) as! UserCell
-        let data = user_list[indexPath.row]
-        cell.picture.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        cell.picture.sd_setImage(with: URL(string: data.picture.thumbnail))
-        cell.name.text = data.name.first + " " + data.name.last
-//        cell.age.text = "อายุ: \(data.age)"
-        cell.email.text = data.email
-        return cell
     }
     
 }
